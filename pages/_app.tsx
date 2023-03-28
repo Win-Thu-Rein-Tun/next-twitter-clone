@@ -6,7 +6,7 @@ import Modal from "@/components/Modal";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Modal isOpen actionLabel="" onClose={()=>{}} onSubmit={()=>{}} />
+      <Modal isOpen actionLabel="Submit" onClose={()=>{}} onSubmit={()=>{}} />
       <Layout>
         <Component {...pageProps} />
       </Layout>
