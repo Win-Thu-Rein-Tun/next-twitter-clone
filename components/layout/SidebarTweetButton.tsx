@@ -1,5 +1,4 @@
 import { FaFeather } from "react-icons/fa";
-import { useRouter } from "next/router";
 import useLoginModal from "@/hooks/useLoginModal";
 import { useCallback } from "react";
 
