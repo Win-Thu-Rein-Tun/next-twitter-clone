@@ -41,7 +41,12 @@ const RegisterModal = () => {
 
       setIsLoading(false);
 
-      toast.success("Successfully Created");
+      toast.success("Successfully Created", {
+        style: {
+          background: "#333",
+          color: "#fff",
+        },
+      });
 
       signIn("credentials", {
         email,
