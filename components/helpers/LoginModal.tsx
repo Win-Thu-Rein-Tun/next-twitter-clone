@@ -1,6 +1,8 @@
 import { useCallback, useState } from "react";
 import useLoginModal from "@/hooks/useLoginModal";
 import useRegisterModal from "@/hooks/useRegisterModal";
+import { signIn } from "next-auth/react";
+import { toast } from "react-hot-toast";
 
 import Input from "../Input";
 import Modal from "../Modal";
@@ -16,6 +18,18 @@ const LoginModal = () => {
   const onSubmit = useCallback(async () => {
     try {
       setIsLoading(true);
+
+      await signIn("credentials", {
+        email,
+        password,
+      });
+
+      toast.success("Logged in successfully", {
+        style: {
+          background: "#333",
+          color: "#fff",
+        },
+      });
 
       loginModal.onClose();
     } catch (error) {
@@ -51,7 +65,7 @@ const LoginModal = () => {
   const footerContent = (
     <div className="text-neutral-400 text-center mt-4">
       <p>
-        First time using Twitter?
+        First time using Twitter? &nbsp;
         <span
           onClick={onToggle}
           className="
@@ -60,7 +74,6 @@ const LoginModal = () => {
             hover:underline
           "
         >
-          {" "}
           Create an account
         </span>
       </p>
