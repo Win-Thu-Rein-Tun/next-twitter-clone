@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { ClipLoader } from "react-spinners";
+import { PacmanLoader } from "react-spinners";
 
 import useUser from "@/hooks/useUser";
 
@@ -15,7 +15,7 @@ const UserView = () => {
   if (isLoading || !fetchedUser) {
     return (
       <div className="flex justify-center items-center h-full">
-        <ClipLoader color="lightblue" size={80} />
+        <PacmanLoader color="#1DA1F2" size={20} />
       </div>
     );
   }
@@ -23,7 +23,7 @@ const UserView = () => {
   return (
     <>
       <Header showBackArrow label={fetchedUser?.name} />
-      <UserHero userId={userId as string}/>
+      <UserHero userId={userId as string} />
     </>
   );
 };
