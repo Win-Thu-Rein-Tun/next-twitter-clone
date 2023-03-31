@@ -10,7 +10,7 @@ interface InputProps {
 const Input: React.FC<InputProps> = ({
   placeholder,
   value,
-  type = "text",
+  type,
   onChange,
   disabled,
   label,
