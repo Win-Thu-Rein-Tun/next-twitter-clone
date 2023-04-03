@@ -5,15 +5,17 @@ interface InputProps {
   disabled?: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   label?: string;
+  className?: string;
 }
 
 const Input: React.FC<InputProps> = ({
   placeholder,
   value,
   type,
-  onChange, 
+  onChange,
   disabled,
   label,
+  className,
 }) => {
   return (
     <div className="w-full">
@@ -26,7 +28,7 @@ const Input: React.FC<InputProps> = ({
         value={value}
         placeholder={placeholder}
         type={type}
-        className="
+        className={`
             w-full
             p-4 
             text-lg 
@@ -42,8 +44,14 @@ const Input: React.FC<InputProps> = ({
             disabled:bg-neutral-900
             disabled:opacity-70
             disabled:cursor-not-allowed
-          "
+            invalid:text-pink-600
+            focus:invalid:border-pink-600
+            ${className}
+          `}
       />
+      <p className="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
+        Please provide a valid email address.
+      </p>
     </div>
   );
 };

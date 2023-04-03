@@ -67,8 +67,10 @@ const RegisterModal = () => {
       <Input
         disabled={isLoading}
         placeholder="Email"
+        type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        className="peer"
       />
       <Input
         disabled={isLoading}
