@@ -13,13 +13,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const { currentUser } = await serverAuth(req);
 
-    if (!userId || typeof userId !== 'string') {
+    if (!currentUser.id || typeof currentUser.id !== 'string') {
       throw new Error('Invalid ID');
     }
 
     const user = await prisma.user.findUnique({
       where: {
-        id: userId
+        id: currentUser.id
       }
     });
 
@@ -27,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       throw new Error('Invalid ID');
     }
 
-    let updatedFollowingIds = [...(user.followingIds || [])];
+    let updatedFollowingIds = [...user.followingIds];
 
     if (req.method === 'POST') {
       updatedFollowingIds.push(userId);
