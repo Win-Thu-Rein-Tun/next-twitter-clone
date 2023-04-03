@@ -1,13 +1,25 @@
 import useUsers from "@/hooks/useUsers";
 
 import Avatar from "../Avatar";
+import { useCallback } from "react";
+import { useRouter } from "next/router";
 
 const FollowBar = () => {
   const { data: users = [] } = useUsers();
+  const router = useRouter();
 
   if (users.length === 0) {
     return null;
   }
+
+  const handleClick = useCallback(
+    (userId: string) => {
+      const url = `/users/${userId}`;
+
+      router.push(url);
+    },
+    [router]
+  );
 
   return (
     <div className="px-6 py-4 hidden lg:block">
@@ -18,7 +30,12 @@ const FollowBar = () => {
             <div key={user.id} className="flex flex-row gap-4">
               <Avatar userId={user.id} />
               <div className="flex flex-col">
-                <p className="text-white font-semibold text-sm">{user.name}</p>
+                <p
+                  onClick={() => handleClick(user.id)}
+                  className="text-white font-semibold text-sm cursor-pointer hover:underline"
+                >
+                  {user.name}
+                </p>
                 <p className="text-neutral-400 text-sm">@{user.username}</p>
               </div>
             </div>
