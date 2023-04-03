@@ -12,14 +12,11 @@ const FollowBar = () => {
     return null;
   }
 
-  const handleClick = useCallback(
-    (userId: string) => {
-      const url = `/users/${userId}`;
+  const handleClick = (userId: string) => {
+    const url = `/users/${userId}`;
 
-      router.push(url);
-    },
-    [router]
-  );
+    router.push(url);
+  };
 
   return (
     <div className="px-6 py-4 hidden lg:block">
