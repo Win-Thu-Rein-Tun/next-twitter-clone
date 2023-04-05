@@ -38,7 +38,21 @@ const useLike = ({ postId, userId }: { postId: string; userId?: string }) => {
       mutateFetchedPost();
       mutateFetchedPosts();
 
-      toast.success("Success");
+      if (hasLiked) {
+        toast.success("Successfully Unlike", {
+          style: {
+            background: "#333",
+            color: "#fff",
+          },
+        });
+      } else {
+        toast.success("Successfully Liked", {
+          style: {
+            background: "#333",
+            color: "#fff",
+          },
+        });
+      }
     } catch (error) {
       toast.error("Something went wrong");
     }
