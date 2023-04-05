@@ -7,6 +7,8 @@ import useLoginModal from "@/hooks/useLoginModal";
 import useCurrentUser from "@/hooks/useCurrentUser";
 
 import Avatar from "../Avatar";
+import useLike from "@/hooks/useLike";
+
 interface PostItemProps {
   data: Record<string, any>;
   userId?: string;
@@ -17,6 +19,7 @@ const PostItem: React.FC<PostItemProps> = ({ data = {}, userId }) => {
   const loginModal = useLoginModal();
 
   const { data: currentUser } = useCurrentUser();
+  const { hasLiked, toggleLike } = useLike({ postId: data.id, userId });
 
   const goToUser = useCallback(
     (ev: any) => {
@@ -37,8 +40,10 @@ const PostItem: React.FC<PostItemProps> = ({ data = {}, userId }) => {
       if (!currentUser) {
         return loginModal.onOpen();
       }
+
+      toggleLike();
     },
-    [loginModal, currentUser]
+    [loginModal, currentUser, toggleLike]
   );
 
   const createdAt = useMemo(() => {
@@ -48,6 +53,8 @@ const PostItem: React.FC<PostItemProps> = ({ data = {}, userId }) => {
 
     return formatDistanceToNowStrict(new Date(data.createdAt));
   }, [data.createdAt]);
+
+  const LikeIcon = hasLiked ? AiFillHeart : AiOutlineHeart;
 
   return (
     <div
@@ -105,7 +112,7 @@ const PostItem: React.FC<PostItemProps> = ({ data = {}, userId }) => {
                   hover:text-red-500
               "
             >
-              <AiOutlineHeart />
+              <LikeIcon />
               <p>{data.likedIds.length}</p>
             </div>
             <div
