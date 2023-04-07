@@ -31,7 +31,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     //     where: {
     //       id: postId,
     //     }
-    //   });
+    //   }); 
 
     //   if (post?.userId) {
     //     await prisma.notification.create({
