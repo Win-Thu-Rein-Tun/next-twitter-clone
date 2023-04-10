@@ -21,6 +21,7 @@ const Sidebar = () => {
       label: "Notifications",
       href: "/notifications",
       auth: true,
+      alert: currentUser?.hasNotification,
     },
     {
       icon: FaUser,
@@ -42,6 +43,7 @@ const Sidebar = () => {
               icon={item.icon}
               label={item.label}
               auth={item.auth}
+              alert={item.alert}
             />
           ))}
           {currentUser && (
