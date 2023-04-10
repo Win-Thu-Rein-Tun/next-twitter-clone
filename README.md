@@ -3,6 +3,7 @@
 - input focus invalid email
 - enable follow bar name click
 - fix follow function error
+- home in tweet button & comment in reply
 
 ## Getting Started
 

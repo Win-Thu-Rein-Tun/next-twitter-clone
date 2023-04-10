@@ -36,12 +36,21 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
 
       await axios.post(url, { body });
 
-      toast.success("Tweet created", {
-        style: {
-          background: "#333",
-          color: "#fff",
-        },
-      });
+      if (!postId) {
+        toast.success("Tweet created", {
+          style: {
+            background: "#333",
+            color: "#fff",
+          },
+        });
+      } else {
+        toast.success("Successfully Reply", {
+          style: {
+            background: "#333",
+            color: "#fff",
+          },
+        });
+      }
       setBody("");
       mutatePosts();
       mutatePost();
@@ -92,7 +101,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
               <Button
                 disabled={isLoading || !body}
                 onClick={onSubmit}
-                label="Tweet"
+                label={postId ? "Reply" : "Tweet"}
               />
             </div>
           </div>
