@@ -1,7 +1,6 @@
 import useUsers from "@/hooks/useUsers";
 
 import Avatar from "../Avatar";
-import { useCallback } from "react";
 import { useRouter } from "next/router";
 
 const FollowBar = () => {
