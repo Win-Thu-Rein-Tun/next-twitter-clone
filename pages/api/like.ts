@@ -35,7 +35,7 @@ export default async function handler(
     if (req.method === "POST") {
       updatedLikedIds.push(currentUser.id);
 
-      // NOTIFICATION PART START
+      // FINAL NOTIFICATION PART START
         try {
           const post = await prisma.post.findUnique({
             where: {
