@@ -39,7 +39,7 @@ export default async function handler(
         try {
           const post = await prisma.post.findUnique({
             where: {
-              id: postId,
+              id: postId, 
             }
           });
 
